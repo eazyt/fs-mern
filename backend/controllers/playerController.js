@@ -31,11 +31,21 @@ export const getPlayersById = (req, res) => {
     res.json(Player)
   })
 }
+
 export const updatePlayersById = (req, res) => { 
   Player.findOneAndUpdate({ _id: req.params.PlayerId }, req.body, {new: true}, (err, Player) => { 
     if (err) { 
       res.send(err);
     }
     res.json(Player)
+  })
+}
+
+export const deletePlayersById = (req, res) => { 
+  Player.deleteOne({ _id: req.params.PlayerId }, (err, Player) => { 
+    if (err) { 
+      res.send(err);
+    }
+    res.json({message: 'Successfully deleted player'})
   })
 }
