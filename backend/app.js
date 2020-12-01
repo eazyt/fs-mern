@@ -2,6 +2,8 @@ require('dotenv').config()
 import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser'
+import routes from './routes/playerRoutes';
+
 
 const DB_URI = process.env.MONGODB_URL
 
@@ -24,6 +26,8 @@ mongoose.connect(DB_URI, {
 // body Parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
+
+routes(app);
 
 app.get('/', (req, res) => { 
   res.send('Welcome to app homePage')
