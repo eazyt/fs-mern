@@ -13,6 +13,7 @@ const PORT = process.env.PORT;
 
 // MongoDb Connection
 mongoose.connect(DB_URI, {
+  useFindAndModify: false,
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useNewUrlParser: true
