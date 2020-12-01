@@ -1,7 +1,8 @@
 require('dotenv').config()
 import express from 'express';
 import mongoose from 'mongoose';
-import bodyParser from 'body-parser'
+import bodyParser from 'body-parser';
+import cors from 'cors';
 import routes from './routes/playerRoutes';
 
 
@@ -26,6 +27,7 @@ mongoose.connect(DB_URI, {
 // body Parser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
+app.use(cors())
 
 routes(app);
 
