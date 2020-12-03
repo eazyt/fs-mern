@@ -11,7 +11,7 @@ export class App extends Component {
 
     this.state = {
       players: [],
-      currentPlayers: {},
+      currentPlayer: {},
 
     }
     this.updateCurrentPlayer = this.updateCurrentPlayer.bind(this)
@@ -19,9 +19,11 @@ export class App extends Component {
 
   componentDidMount() { 
     const url = 'http://localhost:4000/players';
+    console.log(url)
 
     axios.get(url)
       .then((res) => { 
+        console.log(res.data)
         this.setState({
           players: res.data
         })
@@ -33,7 +35,7 @@ export class App extends Component {
   
   updateCurrentPlayer(item) { 
     this.setState({
-      currentPlayers: item
+      currentPlayer: item
     })
   }
   
@@ -41,7 +43,12 @@ export class App extends Component {
     return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col s12" >Menu</div>
+        <nav>
+          <div className="nav-wrapper pink darken-4">
+            <a href="/" className="brand-logo">Soccer Details</a>
+
+          </div>
+        </nav>
       </div>
 
       <div className="row" >
@@ -49,7 +56,7 @@ export class App extends Component {
             <PlayerList players={this.state.players} updateCurrentPlayer={this.updateCurrentPlayer} />
           </div>
           <div className="col s9" >
-            <PlayerSingle />
+            <PlayerSingle player={ this.state.currentPlayer}/>
           </div>
       </div>
       

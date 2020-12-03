@@ -1,5 +1,8 @@
+import React from 'react'
 
 const PlayerList = (props) => {
+  console.log(props)
+
   return (
     <div>
       <ul className="collection with-header">
