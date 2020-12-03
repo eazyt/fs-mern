@@ -1,18 +1,27 @@
-import React, { Component} from 'react';
+import React, { Component } from 'react';
+import axios from 'axios';
 
 export class PlayerForm extends Component {
-  constructor(props) {
-    super(props)
+  submitPlayer(e) { 
+    e.preventDefault()
 
-    this.state = {
-
-    }
+    axios.post('http://localhost:4000/players', {
+      firstName: this.refs.firstName.value,
+      lastName: this.refs.lastName.value,
+      phone: this.refs.phone.value,
+      email: this.refs.email.value,
+    })
+      .then((player) => {
+        console.log('success, new member added:', player)
+      })
+      .catch((err) => {
+        console.log('could not add new member:', err)
+      });
   }
-
   render() {
     return (
       <div className="row">
-        <h1>Add a new member</h1>
+        <h1 className="center" >Add a new member</h1>
         <form className="col s12" onSubmit={ this.submitPlayer.bind(this)}>
           <div className="row">
             <div className="input-field col s6">
